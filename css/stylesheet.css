@@ -1,32 +1,59 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    align-items: center;
     height: 100%;
     color: #333;
     background-color: #fff;
 }
 
 #container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+#game {
+    display: flex;
+    justify-content: center;
     width: 500px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+#pegs {
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    margin: 5px auto;
 }
 
 #board {
     display: inline-block;
     background-color: #55505c;
+    padding: 20px;
+    vertical-align: bottom;
 }
 
 #feedback {
     display: inline-block;
     background-color: #55505c;
-    width: 50px;
+    padding: 20px 5px;
+    vertical-align: bottom;
 }
 
-.hint-row {
-    display: inline;
+.feedback-row {
+    margin-bottom: 10px;
+    padding: 1px;
+}
+
+.guess-row {
+    margin-bottom: 10px;
 }
 
 .hole {
@@ -35,19 +62,17 @@ body {
     width: 40px;
     height: 40px;
     background-color: white;
-    margin: 5px;
+    vertical-align: middle;
+    margin: 0 5px;
 }
 
 .key {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background: white;
     border-radius: 50%;
-}
-
-#pegs {
-    margin-top: 5px;
+    margin: 0 1px;
 }
 
 .choice {
@@ -55,6 +80,11 @@ body {
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    margin: 0 5px;
+}
+
+.color {
+    animation: bounce 0.4s;
 }
 
 .blue {
@@ -79,4 +109,39 @@ body {
 
 .purple {
     background-color: #540d6e;
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: black;
+}
+
+@keyframes bounce {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 1px;
+    }
+    25% {
+        opacity: 1;
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 0 0 1px;
+    }
+    75% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 1px;
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0;
+    }
 }

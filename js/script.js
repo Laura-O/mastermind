@@ -27,28 +27,31 @@ $(document).ready(function() {
     var playGame = function() {
         let posIndex = 0;
 
+        console.log(code);
+
         $(".choice").on("click", function(e) {
             let color = e.target.className.split(" ")[1];
 
-            $(".current-row .hole")
+            $(".current-guess .hole")
                 .eq(posIndex)
-                .addClass(color);
+                .addClass(color)
+                .addClass("color");
 
             guess.push(colors[color]);
+            console.log(guess);
 
-            if (posIndex <= 3) {
+            if (posIndex < 3) {
                 posIndex++;
             } else {
                 evaluateGuess(guess);
                 guess = [];
                 posIndex = 0;
             }
-            console.log(guess);
         });
     };
 
     var generateCode = function() {
-        code = Array.from({ length: 6 }, () => Math.floor(Math.random() * 6));
+        code = Array.from({ length: 4 }, () => Math.ceil(Math.random() * 6));
     };
 
     var evaluateGuess = function(guess) {
@@ -69,12 +72,37 @@ $(document).ready(function() {
             }
         }
 
+        $(".current-guess")
+            .removeClass("current-guess")
+            .prev()
+            .addClass("current-guess");
+
+        var setMarker = function(hit, match) {
+            console.log("exact:", hit, "colors", match);
+            console.log($(".current-feedback").find(".key"));
+
+            $(".current-feedback")
+                .find(".key")
+                .slice(0, hit)
+                .addClass("black");
+            $(".current-feedback")
+                .find(".key")
+                .slice(hit, match)
+                .addClass("white");
+            $(".current-feedback")
+                .removeClass("current-feedback")
+                .prev()
+                .addClass("current-feedback");
+        };
+
+        setMarker(hit, match);
+
         return [hit, match];
     };
 
     var generateBoard = function() {
         for (let x = 0; x < rows; x++) {
-            let guess = $("<div>").addClass("guess");
+            let guess = $("<div>").addClass("guess-row");
 
             for (let y = 0; y < columns; y++) {
                 var hole = $("<div>").addClass("hole");
@@ -85,9 +113,8 @@ $(document).ready(function() {
 
         for (let x = 0; x < rows; x++) {
             let hintRows = columns / 2;
-            console.log(hintRows);
 
-            var $row = $("<div>").addClass("row");
+            var $row = $("<div>").addClass("feedback-row");
 
             for (let y = 0; y < hintRows; y++) {
                 var $hintRow = $("<div>").addClass("hint-row");
@@ -100,9 +127,13 @@ $(document).ready(function() {
             $feedback.append($row);
         }
 
-        $(".guess")
+        $(".guess-row")
             .last()
-            .addClass("current-row");
+            .addClass("current-guess");
+
+        $("#feedback .feedback-row")
+            .last()
+            .addClass("current-feedback");
     };
 
     startGame();
