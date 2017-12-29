@@ -29,6 +29,10 @@ $(document).ready(function() {
 
         console.log(code);
 
+        $("#revert").on("click", function() {
+            console.log("revert");
+        });
+
         $(".choice").on("click", function(e) {
             let color = e.target.className.split(" ")[1];
 
@@ -38,7 +42,6 @@ $(document).ready(function() {
                 .addClass("color");
 
             guess.push(colors[color]);
-            console.log(guess);
 
             if (posIndex < 3) {
                 posIndex++;
@@ -56,8 +59,10 @@ $(document).ready(function() {
 
     var evaluateGuess = function(guess) {
         let currentGuess = guess.slice(0);
+        console.log(currentGuess);
         let hit = 0;
         let match = 0;
+        currentRow++;
 
         for (let x = 0; x < code.length; x++) {
             if (currentGuess[x] == code[x]) {
@@ -72,14 +77,8 @@ $(document).ready(function() {
             }
         }
 
-        $(".current-guess")
-            .removeClass("current-guess")
-            .prev()
-            .addClass("current-guess");
-
         var setMarker = function(hit, match) {
             console.log("exact:", hit, "colors", match);
-            console.log($(".current-feedback").find(".key"));
 
             $(".current-feedback")
                 .find(".key")
@@ -96,7 +95,13 @@ $(document).ready(function() {
         };
 
         if (hit == 4) {
+            console.log("won!");
         } else {
+            $(".current-guess")
+                .removeClass("current-guess")
+                .prev()
+                .addClass("current-guess");
+
             setMarker(hit, match);
         }
 
