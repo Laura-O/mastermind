@@ -95,7 +95,10 @@ $(document).ready(function() {
                 .addClass("current-feedback");
         };
 
-        setMarker(hit, match);
+        if (hit == 4) {
+        } else {
+            setMarker(hit, match);
+        }
 
         return [hit, match];
     };
