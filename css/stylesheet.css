@@ -7,7 +7,28 @@
 body {
     height: 100%;
     color: #333;
-    background-color: #fff;
+    background-color: #6b7a8f;
+}
+
+header {
+}
+
+header h1 {
+    font-family: "Yellowtail", cursive;
+    font-size: 5em;
+    text-align: left;
+    color: #1d2731;
+    /* filter: drop-shadow(0 0 3px #540d6e); */
+    filter: drop-shadow(0 0 3px #ff4d91);
+    transform: skewY(-10deg);
+    margin-bottom: -20px;
+    margin-top: -20px;
+    margin-left: 20px;
+    z-index: 99;
+}
+
+footer {
+    font-family: "Mukta Malar", sans-serif;
 }
 
 #container {
@@ -35,25 +56,31 @@ body {
 
 #board {
     display: inline-block;
-    background-color: #55505c;
+    background-color: #1d2731;
     padding: 20px;
     vertical-align: bottom;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 4px 4px 2px 0 #455a64;
 }
 
 #feedback {
     display: inline-block;
-    background-color: #55505c;
+    background-color: #1d2731;
     padding: 20px 5px;
     vertical-align: bottom;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 4px 4px 2px 0 #455a64;
 }
 
 .feedback-row {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 1px;
 }
 
 .guess-row {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .hole {
@@ -61,7 +88,7 @@ body {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: white;
+    background-color: #6b7a8f;
     vertical-align: middle;
     margin: 0 5px;
 }
@@ -70,7 +97,7 @@ body {
     display: inline-block;
     width: 15px;
     height: 15px;
-    background: white;
+    background: #6b7a8f;
     border-radius: 50%;
     margin: 0 1px;
 }
@@ -92,7 +119,7 @@ body {
 }
 
 .red {
-    background-color: #dd1c1a;
+    background-color: #ff6f59;
 }
 
 .yellow {
@@ -112,7 +139,7 @@ body {
 }
 
 .white {
-    background-color: white;
+    background-color: #ffefc1;
 }
 
 .black {
