@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const columns = 4;
-    const rows = 10;
+    const rows = 8;
 
     const $board = $("#board");
     const $feedback = $("#feedback");

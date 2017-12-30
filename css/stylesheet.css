@@ -7,18 +7,20 @@
 body {
     height: 100%;
     color: #333;
+    /* background-color: #6b7a8f; */
     background-color: #6b7a8f;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ff4d91' fill-opacity='0.35' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    margin: 40px 10px -30px 10px;
+    margin: 40px 10px -50px 10px;
 }
 
 header h1 {
     font-family: "Yellowtail", cursive;
-    font-size: 5em;
+    font-size: 4em;
     text-align: left;
     color: #1d2731;
     filter: drop-shadow(0 0 3px #ff4d91);
@@ -56,7 +58,7 @@ footer {
 }
 
 #lower-board > div {
-    margin: 20px 5px;
+    margin: 10px 5px;
 }
 
 #revert {
@@ -95,7 +97,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px;
-    margin: 15px auto;
+    margin: 5px auto;
     background-color: #1d2731;
     vertical-align: bottom;
     border-radius: 20px;
@@ -111,9 +113,9 @@ footer {
     vertical-align: bottom;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    -webkit-box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
-    -moz-box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
-    box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
+    /* -webkit-box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3);
+    -moz-box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3);
+    box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3); */
     border-right: 5px solid rgba(255, 77, 145, 0.3);
 }
 
@@ -124,9 +126,9 @@ footer {
     vertical-align: bottom;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    -webkit-box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
-    -moz-box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
-    box-shadow: 5px 5px 20px 5px rgba(255, 77, 145, 0.3);
+    /* -webkit-box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3);
+    -moz-box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3);
+    box-shadow: 5px 5px 20px 1px rgba(255, 77, 145, 0.3); */
 }
 
 .feedback-row {
