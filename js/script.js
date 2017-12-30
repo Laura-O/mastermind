@@ -5,7 +5,6 @@ $(document).ready(function() {
     const $board = $("#board");
     const $feedback = $("#feedback");
 
-    let currentRow;
     let code = [];
     let guess = [];
 
@@ -18,17 +17,22 @@ $(document).ready(function() {
         purple: 6,
     };
 
+    $(".restart-game").on("click", function() {
+        restart();
+    });
+
     var startGame = function() {
         generateBoard();
         generateCode();
         playGame();
     };
 
-    var restart = function() {};
+    var restart = function() {
+        location.reload();
+    };
 
     var playGame = function() {
         let posIndex = 0;
-
         console.log(code);
 
         $("#revert").on("click", function() {
@@ -64,7 +68,6 @@ $(document).ready(function() {
         console.log(currentGuess);
         let hit = 0;
         let match = 0;
-        currentRow++;
 
         for (let x = 0; x < code.length; x++) {
             if (currentGuess[x] == code[x]) {

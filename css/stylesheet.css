@@ -346,7 +346,7 @@ footer {
     transform: rotate(45deg);
 }
 
-.modal-restart {
+#modal-restart {
     border: 2px solid #ff4d91;
     border-radius: 5px;
     font-size: 0.5em;
