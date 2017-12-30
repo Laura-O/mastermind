@@ -24,6 +24,8 @@ $(document).ready(function() {
         playGame();
     };
 
+    var restart = function() {};
+
     var playGame = function() {
         let posIndex = 0;
 
@@ -95,7 +97,10 @@ $(document).ready(function() {
         };
 
         if (hit == 4) {
-            console.log("won!");
+            $(".modal").toggleClass("active");
+            $(".x-button").on("click", function() {
+                $(".modal").toggleClass("active");
+            });
         } else {
             $(".current-guess")
                 .removeClass("current-guess")

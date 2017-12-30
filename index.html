@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script defer src="static/fontawesome/fontawesome-all.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Mukta+Malar|Righteous|Yellowtail" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Malar|Righteous|Yellowtail|Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="css/stylesheet.css">
     <title>Mastermind</title>
 </head>
@@ -49,6 +49,19 @@
             </div>
             <div id="revert">
                 <i class="far fa-undo" data-fa-transform="grow-6"></i>
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal_overlay">
+            <div class="inner">
+                <div id="close-modal" class="x-button">
+                    <span>&#43;</span>
+                </div>
+                <div id="won">Code cracked!</div>
+                <div class="modal-footer">
+                    <button class="modal-restart" id="restart">Restart</button>
+                </div>
             </div>
         </div>
     </div>
