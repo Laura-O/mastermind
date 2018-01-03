@@ -8,6 +8,8 @@ $(document).ready(function() {
     let code = [];
     let guess = [];
 
+    let mode = 0;
+
     let colors = {
         blue: 1,
         red: 2,
@@ -19,6 +21,22 @@ $(document).ready(function() {
 
     $(".restart-game").on("click", function() {
         restart();
+    });
+
+    $(".switch-game").on("click", function() {
+        if ($("#container").css("flex-direction") == "column") {
+            $("#container").css("flex-direction", "column-reverse");
+        } else {
+            $("#container").css("flex-direction", "column");
+        }
+        mode = 1;
+        $("#board").empty();
+        $("#feedback").empty();
+        generateBoard();
+        code = [];
+        guess = [];
+        generateCode();
+        playGame();
     });
 
     var startGame = function() {
@@ -39,24 +57,28 @@ $(document).ready(function() {
             console.log("revert");
         });
 
-        $(".choice").on("click", function(e) {
-            let color = e.target.className.split(" ")[1];
+        if (mode === 0) {
+            $(".choice").on("click", function(e) {
+                let color = e.target.className.split(" ")[1];
 
-            $(".current-guess .hole")
-                .eq(posIndex)
-                .addClass(color)
-                .addClass("color");
+                $(".current-guess .hole")
+                    .eq(posIndex)
+                    .addClass(color)
+                    .addClass("color");
 
-            guess.push(colors[color]);
+                guess.push(colors[color]);
 
-            if (posIndex < 3) {
-                posIndex++;
-            } else {
-                evaluateGuess(guess);
-                guess = [];
-                posIndex = 0;
-            }
-        });
+                if (posIndex < 3) {
+                    posIndex++;
+                } else {
+                    evaluateGuess(guess);
+                    guess = [];
+                    posIndex = 0;
+                }
+            });
+        } else if (mode === 1) {
+            console.log("computer plays");
+        }
     };
 
     var generateCode = function() {
