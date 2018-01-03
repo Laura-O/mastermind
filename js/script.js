@@ -65,6 +65,7 @@ $(document).ready(function() {
 
     var evaluateGuess = function(guess) {
         let currentGuess = guess.slice(0);
+        let currentCode = [...code];
         console.log(currentGuess);
         let hit = 0;
         let match = 0;
@@ -72,12 +73,12 @@ $(document).ready(function() {
         for (let x = 0; x < code.length; x++) {
             if (currentGuess[x] == code[x]) {
                 hit++;
-                currentGuess[x] = 0;
+                currentGuess[x] = currentCode[x] = null;
             }
         }
 
-        for (let y = 0; y < code.length; y++) {
-            if (code.indexOf(currentGuess[y]) > 0 && currentGuess[y] !== 0) {
+        for (let y = 0; y < currentCode.length; y++) {
+            if (currentCode.indexOf(currentGuess[y]) != -1 && currentGuess[y] != undefined) {
                 match++;
             }
         }
