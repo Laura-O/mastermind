@@ -139,23 +139,6 @@ $(document).ready(function() {
             }
         }
 
-        var setMarker = function(hit, match) {
-            console.log("exact:", hit, "colors", match);
-
-            $(".current-feedback")
-                .find(".key")
-                .slice(0, hit)
-                .addClass("black");
-            $(".current-feedback")
-                .find(".key")
-                .slice(hit, match)
-                .addClass("white");
-            $(".current-feedback")
-                .removeClass("current-feedback")
-                .prev()
-                .addClass("current-feedback");
-        };
-
         if (hit == 4) {
             $(".modal").toggleClass("active");
             $(".x-button").on("click", function() {
@@ -244,6 +227,8 @@ $(document).ready(function() {
         console.log("Solution length: " + solutions.length);
         currentEstimation = evaluateGuessSolver(currentGuess, code);
 
+        setMarker(currentEstimation[0], currentEstimation[1]);
+
         if (currentEstimation.compare([4, 0])) {
             console.log("found: " + currentGuess);
         } else {
@@ -252,6 +237,25 @@ $(document).ready(function() {
             solve(currentGuess);
         }
     }
+
+    var setGuess = function(guess) {};
+
+    var setMarker = function(hit, match) {
+        console.log("exact:", hit, "colors", match);
+
+        $(".current-feedback")
+            .find(".key")
+            .slice(0, hit)
+            .addClass("black");
+        $(".current-feedback")
+            .find(".key")
+            .slice(hit, match)
+            .addClass("white");
+        $(".current-feedback")
+            .removeClass("current-feedback")
+            .prev()
+            .addClass("current-feedback");
+    };
 
     var reduceSolutions = function(currentGuess, currentEstimation) {
         solutions = solutions.filter(function(innerArray) {
