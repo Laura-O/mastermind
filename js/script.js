@@ -7,8 +7,10 @@ $(document).ready(function() {
 
     let code = [];
     let guess = [];
+    let solutions = [];
 
     let mode = 0;
+    let currentEstimation = [];
 
     let colors = {
         blue: 1,
@@ -32,12 +34,44 @@ $(document).ready(function() {
         mode = 1;
         $("#board").empty();
         $("#feedback").empty();
+        $(".choice").unbind();
         generateBoard();
         code = [];
         guess = [];
-        generateCode();
-        playGame();
+        setCode();
     });
+
+    var setCode = function() {
+        let solutionIndex = 0;
+        code = [];
+
+        $(".choice").on("click", function(e) {
+            let color = e.target.className.split(" ")[1];
+
+            $(".solution-hole")
+                .eq(solutionIndex)
+                .addClass(color)
+                .addClass("color")
+                .children()
+                .hide();
+
+            code.push(colors[color]);
+
+            if (solutionIndex == 3) {
+                $(".choice").unbind();
+                letPlay(code);
+            } else {
+                solutionIndex++;
+            }
+        });
+    };
+
+    var letPlay = function(code) {
+        console.log(code);
+        generateSolutionArray();
+        let firstGuess = [1, 1, 2, 2];
+        solve(firstGuess);
+    };
 
     var startGame = function() {
         generateBoard();
@@ -173,6 +207,78 @@ $(document).ready(function() {
         $("#feedback .feedback-row")
             .last()
             .addClass("current-feedback");
+    };
+
+    function generateSolutionArray() {
+        for (let i = 1; i <= 6; i++) {
+            for (let j = 1; j <= 6; j++) {
+                for (let k = 1; k <= 6; k++) {
+                    for (let l = 1; l <= 6; l++) {
+                        solutions.push([i, j, k, l]);
+                    }
+                }
+            }
+        }
+    }
+
+    Array.prototype.compare = function(array) {
+        if (!array) {
+            return false;
+        }
+        if (this.length !== array.length) {
+            return false;
+        }
+        for (var i = 0, l = this.length; i < l; i++) {
+            if (this[i] instanceof Array && array[i] instanceof Array) {
+                if (!this[i].compare(array[i])) {
+                    return false;
+                }
+            } else if (this[i] !== array[i]) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    function solve(currentGuess) {
+        console.log("Solution length: " + solutions.length);
+        currentEstimation = evaluateGuessSolver(currentGuess, code);
+
+        if (currentEstimation.compare([4, 0])) {
+            console.log("found: " + currentGuess);
+        } else {
+            reduceSolutions(currentGuess, currentEstimation);
+            currentGuess = solutions[Math.floor(Math.random() * solutions.length)];
+            solve(currentGuess);
+        }
+    }
+
+    var reduceSolutions = function(currentGuess, currentEstimation) {
+        solutions = solutions.filter(function(innerArray) {
+            return !evaluateGuessSolver(innerArray, currentGuess).compare(currentEstimation);
+        });
+    };
+
+    var evaluateGuessSolver = function(guess, compareCode) {
+        let currentGuess = guess.slice(0);
+        let currentCode = compareCode | [...code];
+        let hit = 0;
+        let match = 0;
+
+        for (let x = 0; x < code.length; x++) {
+            if (currentGuess[x] == code[x]) {
+                hit++;
+                currentGuess[x] = currentCode[x] = null;
+            }
+        }
+
+        for (let y = 0; y < currentCode.length; y++) {
+            if (currentCode.indexOf(currentGuess[y]) != -1 && currentGuess[y] != undefined) {
+                match++;
+            }
+        }
+
+        return [hit, match];
     };
 
     startGame();
