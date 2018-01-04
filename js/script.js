@@ -8,6 +8,7 @@ $(document).ready(function() {
     let code = [];
     let guess = [];
     let solutions = [];
+    let guessCounter = 8;
 
     let mode = 0;
     let currentEstimation = [];
@@ -115,6 +116,7 @@ $(document).ready(function() {
         }
     };
 
+    // Generate code when user is codebreaker
     var generateCode = function() {
         code = Array.from({ length: 4 }, () => Math.ceil(Math.random() * 6));
     };
@@ -224,10 +226,10 @@ $(document).ready(function() {
     };
 
     function solve(currentGuess) {
+        guessCounter--;
         console.log("Solution length: " + solutions.length);
         currentEstimation = evaluateGuessSolver(currentGuess, code);
-
-        setMarker(currentEstimation[0], currentEstimation[1]);
+        setGuess(currentGuess, currentEstimation);
 
         if (currentEstimation.compare([4, 0])) {
             console.log("found: " + currentGuess);
@@ -238,7 +240,22 @@ $(document).ready(function() {
         }
     }
 
-    var setGuess = function(guess) {};
+    function setGuess(guess, currentEstimation) {
+        for (let x = 0; x < guess.length; x++) {
+            let currentColor = Object.keys(colors).find(key => colors[key] === guess[x]);
+            $(".current-guess .hole")
+                .eq(x)
+                .addClass(currentColor)
+                .addClass("color");
+        }
+
+        $(".current-guess")
+            .removeClass("current-guess")
+            .prev()
+            .addClass("current-guess");
+
+        setMarker(currentEstimation[0], currentEstimation[1]);
+    }
 
     var setMarker = function(hit, match) {
         console.log("exact:", hit, "colors", match);
