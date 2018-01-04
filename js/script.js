@@ -266,7 +266,7 @@ $(document).ready(function() {
             .addClass("black");
         $(".current-feedback")
             .find(".key")
-            .slice(hit, match)
+            .slice(hit, match + hit)
             .addClass("white");
         $(".current-feedback")
             .removeClass("current-feedback")
