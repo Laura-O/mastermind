@@ -142,6 +142,7 @@ $(document).ready(function() {
         }
 
         if (hit == 4) {
+            setMarker(hit, match);
             $(".modal").toggleClass("active");
             $(".x-button").on("click", function() {
                 $(".modal").toggleClass("active");
@@ -230,6 +231,7 @@ $(document).ready(function() {
         console.log("Solution length: " + solutions.length);
         currentEstimation = evaluateGuessSolver(currentGuess, code);
         setGuess(currentGuess, currentEstimation);
+        evaluateGuess(currentGuess);
 
         if (currentEstimation.compare([4, 0])) {
             console.log("found: " + currentGuess);
@@ -240,7 +242,7 @@ $(document).ready(function() {
         }
     }
 
-    function setGuess(guess, currentEstimation) {
+    function setGuess(guess) {
         for (let x = 0; x < guess.length; x++) {
             let currentColor = Object.keys(colors).find(key => colors[key] === guess[x]);
             $(".current-guess .hole")
@@ -248,13 +250,6 @@ $(document).ready(function() {
                 .addClass(currentColor)
                 .addClass("color");
         }
-
-        $(".current-guess")
-            .removeClass("current-guess")
-            .prev()
-            .addClass("current-guess");
-
-        setMarker(currentEstimation[0], currentEstimation[1]);
     }
 
     var setMarker = function(hit, match) {
