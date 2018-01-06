@@ -238,7 +238,9 @@ $(document).ready(function() {
         } else {
             reduceSolutions(currentGuess, currentEstimation);
             currentGuess = solutions[Math.floor(Math.random() * solutions.length)];
-            solve(currentGuess);
+            setTimeout(function() {
+                solve(currentGuess);
+            }, 500);
         }
     }
 
