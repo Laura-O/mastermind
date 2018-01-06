@@ -70,7 +70,13 @@ $(document).ready(function() {
     var letPlay = function(code) {
         console.log(code);
         generateSolutionArray();
-        let firstGuess = [1, 1, 2, 2];
+
+        let firstColor = Math.floor(Math.random() * 6) + 1;
+        let secondColor = Math.floor(Math.random() * 6) + 1;
+        if (firstColor === secondColor) {
+            secondColor === 1 ? secondColor++ : secondColor--;
+        }
+        let firstGuess = [firstColor, firstColor, secondColor, secondColor];
         solve(firstGuess);
     };
 
